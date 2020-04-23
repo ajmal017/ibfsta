@@ -5,6 +5,7 @@ WORKDIR /root
 RUN wget http://interactivebrokers.github.io/downloads/twsapi_macunix.976.01.zip
 RUN unzip twsapi_macunix.976.01.zip -d $HOME/ && cd ~/IBJts/source/pythonclient && python3 setup.py build install
 RUN pip install --upgrade pip && pip install ib_insync dataclasses
+RUN apk add --no-cache tzdata && cp -r -f /usr/share/zoneinfo/Asia/Dubai /etc/localtime
 
 WORKDIR /notebooks
 EXPOSE 8888
